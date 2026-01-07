@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZakharL</title>
+
+  <!-- external CSS file assumed as style.css -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="bgCanvas"></canvas>
+
+  <!-- Landing -->
+  <div class="landing">
+    <img src="main.png" alt="Profile" />
+    <h1>Zakhar Liskovyi</h1>
+    <p style="color:#d3a7ff; margin-top:10px;">Robotics, Engineering, Computer Science</p>
+    <div class="down-arrow"></div>
+  </div>
+
+  <!-- About -->
+ <section>
+  <h2>Skills</h2>
+
+  <div style="margin-top:20px; max-width:700px; line-height:1.8;">
+    
+    <h4 style="margin-bottom:6px;">Languages & Coding</h3>
+    <p>C++, Java, Lua, HTML, CSS, LOVE2D, Roblox Studio</p>
+
+    <br/>
+
+    <h4 style="margin-bottom:6px;">Design & Tools</h3>
+    <p>Fusion 360, Onshape, AutoCAD, Photoshop, After Effects, KiCad, EasyEDA</p>
+
+    <br/>
+
+    <h4 style="margin-bottom:6px;">Hardware & Electronics</h3>
+    <p>Raspberry Pi, Arduino, VexCode</p>
+
+  </div>
+</section>
+
+
+  <!-- Projects -->
+  <section>
+    <h2>Projects</h2>
+    <div class="projects-grid" style="margin-top:40px;">
+      <div class="project-box" onclick="location.href='https://github.com/spicyweedtimmothyoh/tetriopad'">
+        <img src="proj1.png" />
+        <p>a modular and ergonomic custom macro pad to enhance tetr.io gameplay. designed a pcb, case, and programmed using KMK and python.</p>
+      </div>
+      <div class="project-box" onclick="location.href='https://github.com/spicyweedtimmothyoh/wordleart'">
+        <img src="proj2.png" />
+        <p>program that lets you turn your wordle board into a drawing.</p>
+      </div>
+      <div class="project-box" onclick="location.href='https://github.com/'">
+        <img src="proj3.png" />
+        <p>Project 3 description goes here.</p>
+      </div>
+      <div class="project-box" onclick="location.href='https://github.com/'">
+        <img src="proj4.png" />
+        <p>Project 4 description goes here.</p>
+      </div>
+      <div class="project-box" onclick="location.href='https://github.com/'">
+        <img src="proj5.png" />
+        <p>Project 5 description goes here.</p>
+      </div>
+      <div class="project-box" onclick="location.href='https://github.com/'">
+        <img src="proj6.png" />
+        <p>Project 6 description goes here.</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // neural network float effect
+    const canvas = document.getElementById('bgCanvas');
+    const ctx = canvas.getContext('2d');
+    let w, h;
+    let nodes = [];
+    let mouse = { x: 0, y: 0 };
+
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    for (let i = 0; i < 60; i++) {
+      nodes.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5
+      });
+    }
+
+    window.addEventListener('mousemove', e => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = '#ffffff';
+
+      nodes.forEach(n => {
+        n.x += n.vx;
+        n.y += n.vy;
+
+        if (n.x < 0 || n.x > w) n.vx *= -1;
+        if (n.y < 0 || n.y > h) n.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, 2, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      // lines
+      ctx.strokeStyle = 'rgba(200,150,255,0.2)';
+      nodes.forEach(a => {
+        nodes.forEach(b => {
+          let dx = a.x - b.x;
+          let dy = a.y - b.y;
+          let dist = Math.sqrt(dx*dx + dy*dy);
+          if (dist < 120) {
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        });
+      });
+
+      requestAnimationFrame(draw);
+    }
+    draw();
+  </script>
+</body>
+</html>
+

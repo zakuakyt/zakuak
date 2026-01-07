@@ -1,0 +1,109 @@
+/* Global */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+font-family: 'Roboto Mono', monospace;  background: #0f0f17;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+h1, h2, h3 {
+  color: #e3baff;
+  text-shadow: 0 0 10px #b374ff, 0 0 20px #d3a7ff, 0 0 30px #d3a7ff;
+}
+
+/* Glow effect for name */
+.landing h1 {
+  text-shadow: 0 0 12px #b374ff, 0 0 25px #d3a7ff, 0 0 40px #ffffff;
+  transition: 0.3s ease;
+}
+.landing h1:hover {
+  text-shadow: 0 0 18px #c792ff, 0 0 35px #e5c4ff, 0 0 55px #ffffff;
+}
+
+/* Glow effect for name */
+.landing h1 {
+  text-shadow: 0 0 10px #b374ff, 0 0 20px #d3a7ff, 0 0 30px #d3a7ff;
+  transition: 0.3s ease;
+}
+.landing h1:hover {
+  text-shadow: 0 0 15px #b374ff, 0 0 30px #d3a7ff, 0 0 45px #ffffff;
+}
+
+/* Landing */
+.landing {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px;
+}
+.landing img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+section {
+  padding: 100px 10%;
+}
+
+/* Projects */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+.project-box {
+  background: #1a1a27;
+  padding: 20px;
+  border-radius: 12px;
+  transition: 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(211, 167, 255, 0.25);
+}
+
+
+.project-box:hover {
+  background: #26263a;
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 0 25px rgba(211, 167, 255, 0.6);
+}
+.project-box img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+/* Background canvas */
+#bgCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+/* Down arrow animation */
+.down-arrow {
+  margin-top: 30px;
+  width: 30px;
+  height: 30px;
+  border-left: 3px solid #e3baff;
+  border-bottom: 3px solid #e3baff;
+  transform: rotate(-45deg);
+  animation: arrowBounce 1.6s infinite ease-in-out;
+  filter: drop-shadow(0 0 10px #c792ff);
+}
+
+@keyframes arrowBounce {
+  0% { transform: translateY(0) rotate(-45deg); }
+  50% { transform: translateY(10px) rotate(-45deg); }
+  100% { transform: translateY(0) rotate(-45deg); }
+}
